@@ -14,6 +14,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
+Plug 'fatih/vim-go'
 call plug#end()
 
 let g:ctrlp_map = '<c-p>'
