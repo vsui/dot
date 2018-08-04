@@ -8,6 +8,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall -sync | source $MYVIMRC
 endif
 
+
+let g:deoplete#enable_at_startup = 1
+
 call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
@@ -15,6 +18,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'fatih/vim-go'
+if has('nvim')
+	echo 'nvim'
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
 call plug#end()
 
 let g:ctrlp_map = '<c-p>'
