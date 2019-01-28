@@ -26,11 +26,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'fatih/vim-go'
-if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'zchee/deoplete-go'
-	Plug 'majutsushi/tagbar'
-endif
 call plug#end()
 
 let g:ctrlp_map = '<c-p>'
