@@ -63,7 +63,7 @@ let g:ctrlp_map = '<c-p>'
 map <c-n> :NERDTreeToggle<cr>
 
 set hlsearch
-
-" show all trailing whitespaces
+"" highlight trailing whitespaces
 nnoremap <leader>kk /\s\+$<Esc>
+"" unhighlight highlights
 nnoremap <leader>kh :noh<Esc>
