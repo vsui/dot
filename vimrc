@@ -1,33 +1,63 @@
 syntax on
 set smartindent
 
-" install vim-plug if it is not already present
-if has('nvim')
-	if empty(glob('~/.config/nvim/autoload/plug.vim'))
-		silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-		    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-		autocmd VimEnter * PlugInstall -sync | source $MYVIMRC
-	endif
-else
-	if empty(glob('~/.vim/autoload/plug.vim'))
-		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-		    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-		autocmd VimEnter * PlugInstall -sync | source $MYVIMRC
-	endif
+set number
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+" install vim-plug if it is not already installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+	    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall -sync | source $MYVIMRC
 endif
 
-
-let g:deoplete#enable_at_startup = 1
-
 call plug#begin('~/.vim/plugged')
+Plug 'easymotion/vim-easymotion'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-fugitive'
-Plug 'fatih/vim-go'
+Plug 'w0rp/ale'
 call plug#end()
 
+" ALE settings
+let g:ale_completion_enabled = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+let g:ale_rust_rls_toolchain = 'stable'
+let g:ale_linters = {
+\  'cpp': ['cquery'],
+\  'python': ['pyls'],
+\  'rust': ['rls']
+\}
+let g:ale_fixers = {
+\ 'cpp': ['clang-format'],
+\ 'rust': ['rustfmt']
+\}
+
+" Key mappings
+let g:mapleader = ','
+inoremap jk <esc>
+map <leader>t :terminal<cr>
+"" ALE key mappings
+nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>af :ALEFix<cr>
+nnoremap <leader>ag :ALEGoToDefinitionInSplit<cr>
+nnoremap <leader>at :ALEGoToTypeDefinitionInSplit<cr>
+nnoremap <leader>ah :ALEHover<cr>
+nnoremap <leader>ad :ALEDetail<cr>
+nnoremap <leader>an :ALENext<cr>
+"" Other plugin key mappings
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-map <C-n> :NERDTreeToggle<CR>
+map <c-n> :NERDTreeToggle<cr>
+
+set hlsearch
+
+" show all trailing whitespaces
+nnoremap <leader>kk /\s\+$<Esc>
+nnoremap <leader>kh :noh<Esc>
