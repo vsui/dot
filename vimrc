@@ -5,6 +5,10 @@ set number
 set tabstop=2
 set shiftwidth=2
 set expandtab
+" this controls how long it takes for the current buffer to be flushed to disk
+" the default is 4000 (4 seconds) but the git-gutter updates are dictated by
+" this so I've set it lower
+set updatetime=100
 
 " install vim-plug if it is not already installed
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -14,9 +18,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
