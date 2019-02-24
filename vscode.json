@@ -1,0 +1,45 @@
+{
+    // Editor behavior
+    "editor.tabSize": 4,
+    "cmake.configureOnOpen": true,
+    // These need to be set for Titlebar-Less VSCode for macOS
+    "window.titleBarStyle": "custom", 
+    "window.nativeTabs": false,
+
+    // Editor appearance
+    "editor.rulers": [], // Don't show rulers 
+    "editor.renderIndentGuides": false,
+    "editor.wordWrap": "off",
+    "editor.minimap.enabled": false,
+    "workbench.statusBar.feedback.visible": false, // No smiley
+    "workbench.colorTheme": "Nord",
+
+    // Zen Mode
+    "zenMode.fullScreen": false,
+    "zenMode.centerLayout": false, // Center layout looks weird
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideStatusBar": false,
+
+    // Vim
+    "vim.easymotion": true,
+    "vim.surround": true,
+    "vim.useSystemClipboard": true,
+    "vim.insertModeKeyBindingsNonRecursive": [{
+        "before": ["j", "k"],
+        "after": ["<Esc>"],
+    }
+    ],
+    "vim.leader": ",",
+    "vim.statusBarColorControl": true, // Status bar reflects vim mode
+    "vim.statusBarColors.normal": "#8FBCBB",
+    "vim.statusBarColors.insert": "#BF616A",
+    "vim.statusBarColors.visual": "#B48EAD",
+    "vim.statusBarColors.visualline": "#B48EAD",
+    "vim.statusBarColors.visualblock": "#A3BE8C",
+    "vim.statusBarColors.replace": "#D08770",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#B48EAD",
+        "statusBar.noFolderBackground": "#B48EAD",
+        "statusBar.debuggingBackground": "#B48EAD"
+    },
+}
