@@ -3,11 +3,11 @@
     "editor.tabSize": 4,
     "cmake.configureOnOpen": true,
     // These need to be set for Titlebar-Less VSCode for macOS
-    "window.titleBarStyle": "custom", 
+    "window.titleBarStyle": "custom",
     "window.nativeTabs": false,
 
     // Editor appearance
-    "editor.rulers": [], // Don't show rulers 
+    "editor.rulers": [], // Don't show rulers
     "editor.renderIndentGuides": false,
     "editor.wordWrap": "off",
     "editor.minimap.enabled": false,
