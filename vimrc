@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kien/ctrlp.vim'
+Plug 'lervag/vimtex'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -44,17 +45,19 @@ let g:ale_fixers = {
 \ 'cpp': ['clang-format'],
 \ 'rust': ['rustfmt']
 \}
+let g:ale_c_build_dir = './build'
 
 " Key mappings
 let g:mapleader = ','
 inoremap jk <esc>
 map <leader>t :terminal<cr>
+map <leader>m :term make -C ./build<cr>
 "" ALE key mappings
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>af :ALEFix<cr>
-nnoremap <leader>ag :ALEGoToDefinitionInSplit<cr>
-nnoremap <leader>at :ALEGoToTypeDefinitionInSplit<cr>
+nnoremap <leader>ag :ALEGoToDefinition<cr>
+nnoremap <leader>at :ALEGoToTypeDefinition<cr>
 nnoremap <leader>ah :ALEHover<cr>
 nnoremap <leader>ad :ALEDetail<cr>
 nnoremap <leader>an :ALENext<cr>
