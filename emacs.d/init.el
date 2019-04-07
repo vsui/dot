@@ -50,7 +50,7 @@ There are two things you can do about this warning:
     ("392395ee6e6844aec5a76ca4f5c820b97119ddc5290f4e0f58b38c9748181e8d" default)))
  '(package-selected-packages
    (quote
-    (magit dap-mode ace-window lsp-ui company-lsp cquery key-chord multi-term flatui-theme merlin tuareg lsp-mode spacemacs-theme racer flymake-rust flycheck-rust evil dracula-theme company cargo atom-one-dark-theme atom-dark-theme))))
+    (projectile magit dap-mode ace-window lsp-ui company-lsp cquery key-chord multi-term flatui-theme merlin tuareg lsp-mode spacemacs-theme racer flymake-rust flycheck-rust evil dracula-theme company cargo atom-one-dark-theme atom-dark-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -98,9 +98,7 @@ There are two things you can do about this warning:
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
 
-(require 'clang-format)
 (global-set-key (kbd "C-c f") 'lsp-format-buffer)
-(setq clang-format-style-option "llvm")
 
 ;; TODO turn off electric indent mode in tuareg only
 ;; TODO turn off evil in eshell
@@ -126,3 +124,8 @@ There are two things you can do about this warning:
 (setq backup-by-copying t)
 
 (global-set-key (kbd "C-x g") 'magit-status)
+
+(add-to-list 'package-pinned-packages '(projectile . "melpa-stable") t)
+(require 'projectile)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(projectile-mode 1)
