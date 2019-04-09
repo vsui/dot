@@ -50,7 +50,7 @@ There are two things you can do about this warning:
     ("392395ee6e6844aec5a76ca4f5c820b97119ddc5290f4e0f58b38c9748181e8d" default)))
  '(package-selected-packages
    (quote
-    (helm-projectile ripgrep projectile magit dap-mode ace-window lsp-ui company-lsp cquery key-chord multi-term flatui-theme merlin tuareg lsp-mode spacemacs-theme racer flymake-rust flycheck-rust evil dracula-theme company cargo atom-one-dark-theme atom-dark-theme))))
+    (helm-rg helm-projectile ripgrep projectile magit dap-mode ace-window lsp-ui company-lsp cquery key-chord multi-term flatui-theme merlin tuareg lsp-mode spacemacs-theme racer flymake-rust flycheck-rust evil dracula-theme company cargo atom-one-dark-theme atom-dark-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
