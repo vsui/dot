@@ -100,6 +100,13 @@ There are two things you can do about this warning:
 
 (global-set-key (kbd "C-c f") 'lsp-format-buffer)
 
+(defun lsp-mode-before-save-hook ()
+  (when (eq major-mode 'c++-mode)
+    (lsp-format-buffer)))
+
+(add-hook 'before-save-hook #'lsp-mode-before-save-hook)
+
+
 ;; TODO turn off electric indent mode in tuareg only
 ;; TODO turn off evil in eshell
 ;; TODO organize
