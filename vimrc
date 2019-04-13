@@ -64,7 +64,7 @@ nnoremap <leader>an :ALENext<cr>
 "" Other plugin key mappings
 let g:ctrlp_map = '<c-p>'
 map <c-n> :NERDTreeToggle<cr>
-
+"" Git key mappings
 nnoremap <leader>gn :GitGutterNextHunk<cr>
 nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>gu :Gpush<cr>
