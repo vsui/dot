@@ -14,7 +14,7 @@ set updatetime=100
 if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 	    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall -sync | source $MYVIMRC
+autocmd	autocmd VimEnter * PlugInstall -sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -65,8 +65,10 @@ nnoremap <leader>an :ALENext<cr>
 let g:ctrlp_map = '<c-p>'
 map <c-n> :NERDTreeToggle<cr>
 
-set hlsearch
-"" highlight trailing whitespaces
-nnoremap <leader>kk /\s\+$<Esc>
-"" unhighlight highlights
-nnoremap <leader>kh :noh<Esc>
+nnoremap <leader>gn :GitGutterNextHunk<cr>
+nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gp :Gpush<cr>
+nnoremap <leader>gp :GitGutterPrevHunk<cr>
+nnoremap <leader>gd :GitGutterUndoHunk<cr>
+nnoremap <leader>gs :Gstatus<cr>
+
