@@ -72,3 +72,6 @@ nnoremap <leader>gp :GitGutterPrevHunk<cr>
 nnoremap <leader>gd :GitGutterUndoHunk<cr>
 nnoremap <leader>gs :Gstatus<cr>
 
+" Ignore .gitignore for CtrlP
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
