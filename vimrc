@@ -67,7 +67,7 @@ map <c-n> :NERDTreeToggle<cr>
 
 nnoremap <leader>gn :GitGutterNextHunk<cr>
 nnoremap <leader>gc :Gcommit<cr>
-nnoremap <leader>gp :Gpush<cr>
+nnoremap <leader>gu :Gpush<cr>
 nnoremap <leader>gp :GitGutterPrevHunk<cr>
 nnoremap <leader>gd :GitGutterUndoHunk<cr>
 nnoremap <leader>gs :Gstatus<cr>
