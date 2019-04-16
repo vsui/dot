@@ -26,7 +26,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() } }
 call plug#end()
 
 " ALE settings
@@ -52,15 +52,7 @@ let g:mapleader = ','
 inoremap jk <esc>
 map <leader>t :terminal<cr>
 map <leader>m :term make -C ./build<cr>
-"" ALE key mappings
-nnoremap <leader>ev :e $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>af :ALEFix<cr>
-nnoremap <leader>ag :ALEGoToDefinition<cr>
-nnoremap <leader>at :ALEGoToTypeDefinition<cr>
-nnoremap <leader>ah :ALEHover<cr>
-nnoremap <leader>ad :ALEDetail<cr>
-nnoremap <leader>an :ALENext<cr>
+
 "" Other plugin key mappings
 let g:ctrlp_map = '<c-p>'
 map <c-n> :NERDTreeToggle<cr>
@@ -74,4 +66,14 @@ nnoremap <leader>gs :Gstatus<cr>
 
 " Ignore .gitignore for CtrlP
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" coc key mappings
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+set hidden "buffers can be closed
 
