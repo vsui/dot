@@ -26,6 +26,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
+Plug 'rhysd/vim-clang-format'
 Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() } }
 call plug#end()
 
@@ -76,4 +77,7 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 set hidden "buffers can be closed
+
+let g:clang_format#auto_format = 1
+let g:clang_format#code_style = 'llvm'
 
