@@ -21,6 +21,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kien/ctrlp.vim'
+Plug 'the-lambda-church/merlin'
+Plug 'vim-syntastic/syntastic'
+Plug 'sbdchd/neoformat'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'lervag/vimtex'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
@@ -76,8 +80,53 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 set hidden "buffers can be closed
 
 let g:clang_format#auto_format = 1
 let g:clang_format#code_style = 'llvm'
 
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+" syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_ocaml_checkers = ['merlin']
+
+" neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
+let g:neoformat_ocaml_ocaml_format = {
+      \ 'exe': 'ocamlformat',
+      \ 'args': ['--disable-outside-detected-project']
+      \ }
+
+let g:neoformat_enabled_ocaml = ['ocamlformat']
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+"" blindly copied from `:h merlin.txt`
+if !exists('g:deoplete#omni_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+let g:deoplete#omni#input_patterns.ocaml = '[^. *\t]\.\w*|\s\w*|#'
