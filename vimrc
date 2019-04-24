@@ -60,6 +60,7 @@ map <leader>m :term make -C ./build<cr>
 
 "" Other plugin key mappings
 let g:ctrlp_map = '<c-p>'
+nnoremap <C-b> :CtrlPBuffer<cr>
 map <c-n> :NERDTreeToggle<cr>
 "" Git key mappings
 nnoremap <leader>gn :GitGutterNextHunk<cr>
