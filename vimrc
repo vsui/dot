@@ -74,12 +74,12 @@ nnoremap <leader>gs :Gstatus<cr>
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " coc key mappings
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+autocmd Filetype c++ nmap <silent> gd <Plug>(coc-definition)
+autocmd Filetype c++ nmap <silent> gt <Plug>(coc-type-definition)
+autocmd Filetype c++ nmap <silent> gi <Plug>(coc-implementation)
+autocmd Filetype c++ nmap <silent> gr <Plug>(coc-references)
+autocmd Filetype c++ nmap <silent> [c <Plug>(coc-diagnostic-prev)
+autocmd Filetype c++ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -131,3 +131,7 @@ if !exists('g:deoplete#omni_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
 let g:deoplete#omni#input_patterns.ocaml = '[^. *\t]\.\w*|\s\w*|#'
+call deoplete#custom#option('auto_complete_delay', 1000)
+
+autocmd Filetype ocaml nnoremap go :MerlinOccurrences<cr>
+autocmd Filetype ocaml nnoremap gt :MerlinTypeOf<cr>
