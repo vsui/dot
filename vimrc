@@ -56,7 +56,6 @@ let g:ale_c_build_dir = './build'
 let g:mapleader = ','
 inoremap jk <esc>
 map <leader>t :terminal<cr>
-map <leader>m :term make -C ./build<cr>
 
 "" Other plugin key mappings
 let g:ctrlp_map = '<c-p>'
@@ -80,6 +79,7 @@ autocmd Filetype c++ nmap <silent> gi <Plug>(coc-implementation)
 autocmd Filetype c++ nmap <silent> gr <Plug>(coc-references)
 autocmd Filetype c++ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 autocmd Filetype c++ nmap <silent> ]c <Plug>(coc-diagnostic-next)
+autocmd Filetype c++ map <leader>m :term make -C ./build<cr>
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -135,3 +135,4 @@ call deoplete#custom#option('auto_complete_delay', 1000)
 
 autocmd Filetype ocaml nnoremap go :MerlinOccurrences<cr>
 autocmd Filetype ocaml nnoremap gt :MerlinTypeOf<cr>
+autocmd Filetype ocaml map <leader>m :make<cr>
