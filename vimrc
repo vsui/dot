@@ -62,10 +62,9 @@ let g:ctrlp_map = '<c-p>'
 nnoremap <C-b> :CtrlPBuffer<cr>
 map <c-n> :NERDTreeToggle<cr>
 "" Git key mappings
-nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>gu :GitGutterUndoHunk<cr>
-nnoremap <leader>g[ :GitGutterPrevHunk<cr>
-nnoremap <leader>g] :GitGutterNextHunk<cr>
+nnoremap <leader>gj :GitGutterPrevHunk<cr>
+nnoremap <leader>gk :GitGutterNextHunk<cr>
 nnoremap <leader>gd :Gvdiff<cr>
 nnoremap <leader>gs :Gstatus<cr>
 
