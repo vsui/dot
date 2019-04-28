@@ -136,3 +136,5 @@ call deoplete#custom#option('auto_complete_delay', 1000)
 autocmd Filetype ocaml nnoremap go :MerlinOccurrences<cr>
 autocmd Filetype ocaml nnoremap gt :MerlinTypeOf<cr>
 autocmd Filetype ocaml map <leader>m :make<cr>
+"" ignore .mly and .mll
+let g:syntastic_ignore_files = ['\m\c\.ml[ly]$']
