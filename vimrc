@@ -63,8 +63,8 @@ nnoremap <C-b> :CtrlPBuffer<cr>
 map <c-n> :NERDTreeToggle<cr>
 "" Git key mappings
 nnoremap <leader>gu :GitGutterUndoHunk<cr>
-nnoremap <leader>gj :GitGutterPrevHunk<cr>
-nnoremap <leader>gk :GitGutterNextHunk<cr>
+nnoremap <leader>gk :GitGutterPrevHunk<cr>
+nnoremap <leader>gj :GitGutterNextHunk<cr>
 nnoremap <leader>gd :Gvdiff<cr>
 nnoremap <leader>gs :Gstatus<cr>
 
