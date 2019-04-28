@@ -62,11 +62,11 @@ let g:ctrlp_map = '<c-p>'
 nnoremap <C-b> :CtrlPBuffer<cr>
 map <c-n> :NERDTreeToggle<cr>
 "" Git key mappings
-nnoremap <leader>gn :GitGutterNextHunk<cr>
 nnoremap <leader>gc :Gcommit<cr>
-nnoremap <leader>gu :Gpush<cr>
-nnoremap <leader>gp :GitGutterPrevHunk<cr>
-nnoremap <leader>gd :GitGutterUndoHunk<cr>
+nnoremap <leader>gu :GitGutterUndoHunk<cr>
+nnoremap <leader>g[ :GitGutterPrevHunk<cr>
+nnoremap <leader>g] :GitGutterNextHunk<cr>
+nnoremap <leader>gd :Gvdiff<cr>
 nnoremap <leader>gs :Gstatus<cr>
 
 " Ignore .gitignore for CtrlP
