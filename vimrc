@@ -54,6 +54,7 @@ let g:ale_c_build_dir = './build'
 
 " Key mappings
 let g:mapleader = ','
+nnoremap <leader>w :w<cr>
 inoremap jk <esc>
 map <leader>t :terminal<cr>
 
