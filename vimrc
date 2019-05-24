@@ -117,12 +117,10 @@ augroup fmt
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
-let g:neoformat_ocaml_ocaml_format = {
+let g:neoformat_ocaml_ocamlformat = {
       \ 'exe': 'ocamlformat',
-      \ 'args': ['--disable-outside-detected-project']
       \ }
-
-let g:neoformat_enabled_ocaml = ['ocamlformat']
+ let g:neoformat_enabled_ocaml = ['ocamlformat']
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
