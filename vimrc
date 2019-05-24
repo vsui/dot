@@ -136,5 +136,14 @@ autocmd Filetype ocaml nnoremap gt :MerlinTypeOf<cr>
 autocmd Filetype ocaml nnoremap g? :MerlinDocument<cr>
 autocmd Filetype ocaml nnoremap gd :MerlinLocate<cr>
 autocmd Filetype ocaml map <leader>m :make<cr>
+autocmd Filetype ocaml nnoremap gj :lnext<cr>
+autocmd Filetype ocaml nnoremap gk :lprevious<cr>
+autocmd Filetype ocaml nnoremap g- :MerlinOutline<cr>
+
 "" ignore .mly and .mll
 let g:syntastic_ignore_files = ['\m\c\.ml[ly]$']
+
+tnoremap <C-w>h <C-\><C-n><C-w>h
+tnoremap <C-w>j <C-\><C-n><C-w>j
+tnoremap <C-w>k <C-\><C-n><C-w>k
+tnoremap <C-w>l <C-\><C-n><C-w>l
