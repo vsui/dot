@@ -72,15 +72,6 @@ nnoremap <leader>gs :Gstatus<cr>
 " Ignore .gitignore for CtrlP
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-" coc key mappings
-autocmd Filetype c++ nmap <silent> gd <Plug>(coc-definition)
-autocmd Filetype c++ nmap <silent> gt <Plug>(coc-type-definition)
-autocmd Filetype c++ nmap <silent> gi <Plug>(coc-implementation)
-autocmd Filetype c++ nmap <silent> gr <Plug>(coc-references)
-autocmd Filetype c++ nmap <silent> [c <Plug>(coc-diagnostic-prev)
-autocmd Filetype c++ nmap <silent> ]c <Plug>(coc-diagnostic-next)
-autocmd Filetype c++ map <leader>m :term make -C ./build<cr>
-
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -117,6 +108,17 @@ augroup fmt
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
+augroup file_type_cpp
+  autocmd!
+  autocmd Filetype c++ nmap <silent> gd <Plug>(coc-definition)
+  autocmd Filetype c++ nmap <silent> gt <Plug>(coc-type-definition)
+  autocmd Filetype c++ nmap <silent> gi <Plug>(coc-implementation)
+  autocmd Filetype c++ nmap <silent> gr <Plug>(coc-references)
+  autocmd Filetype c++ nmap <silent> [c <Plug>(coc-diagnostic-prev)
+  autocmd Filetype c++ nmap <silent> ]c <Plug>(coc-diagnostic-next)
+  autocmd Filetype c++ map <leader>m :term make -C ./build<cr>
+augroup END
+
 let g:neoformat_ocaml_ocamlformat = {
       \ 'exe': 'ocamlformat',
       \ }
@@ -131,14 +133,16 @@ endif
 let g:deoplete#omni#input_patterns.ocaml = '[^. *\t]\.\w*|\s\w*|#'
 call deoplete#custom#option('auto_complete_delay', 1000)
 
-autocmd Filetype ocaml nnoremap go :MerlinOccurrences<cr>
-autocmd Filetype ocaml nnoremap gt :MerlinTypeOf<cr>
-autocmd Filetype ocaml nnoremap g? :MerlinDocument<cr>
-autocmd Filetype ocaml nnoremap gd :MerlinLocate<cr>
-autocmd Filetype ocaml map <leader>m :make<cr>
-autocmd Filetype ocaml nnoremap gj :lnext<cr>
-autocmd Filetype ocaml nnoremap gk :lprevious<cr>
-autocmd Filetype ocaml nnoremap g- :MerlinOutline<cr>
+augroup file_type_ocaml
+  autocmd Filetype ocaml nnoremap go :MerlinOccurrences<cr>
+  autocmd Filetype ocaml nnoremap gt :MerlinTypeOf<cr>
+  autocmd Filetype ocaml nnoremap g? :MerlinDocument<cr>
+  autocmd Filetype ocaml nnoremap gd :MerlinLocate<cr>
+  autocmd Filetype ocaml map <leader>m :make<cr>
+  autocmd Filetype ocaml nnoremap gj :lnext<cr>
+  autocmd Filetype ocaml nnoremap gk :lprevious<cr>
+  autocmd Filetype ocaml nnoremap g- :MerlinOutline<cr>
+augroup END
 
 "" ignore .mly and .mll
 let g:syntastic_ignore_files = ['\m\c\.ml[ly]$']
