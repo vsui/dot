@@ -32,6 +32,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'rhysd/vim-clang-format'
 Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() } }
+Plug 'roxma/vim-hug-neovim-rpc'
 call plug#end()
 
 " Key mappings
