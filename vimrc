@@ -34,23 +34,16 @@ Plug 'rhysd/vim-clang-format'
 Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() } }
 call plug#end()
 
-
 " Key mappings
 let g:mapleader = ','
-nnoremap <leader>w :w<cr>
 inoremap jk <esc>
-map <leader>t :terminal<cr>
-
 "" Other plugin key mappings
 let g:ctrlp_map = '<c-p>'
-nnoremap <C-b> :CtrlPBuffer<cr>
 map <c-n> :NERDTreeToggle<cr>
 "" Git key mappings
-nnoremap <leader>gu :GitGutterUndoHunk<cr>
-nnoremap <leader>gk :GitGutterPrevHunk<cr>
-nnoremap <leader>gj :GitGutterNextHunk<cr>
-nnoremap <leader>gd :Gvdiff<cr>
-nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gx :GitGutterUndoHunk<cr>
+nnoremap <leader>g[ :GitGutterPrevHunk<cr>
+nnoremap <leader>g] :GitGutterNextHunk<cr>
 
 " Ignore .gitignore for CtrlP
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
