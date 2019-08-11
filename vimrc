@@ -61,23 +61,20 @@ endfunction
 
 set hidden "buffers can be closed
 
-let g:clang_format#auto_format = 1
-let g:clang_format#code_style = 'llvm'
-
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+"execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 " syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_ocaml_checkers = ['merlin']
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"
+"let g:syntastic_ocaml_checkers = ['merlin']
 
 " neoformat
 augroup fmt
@@ -96,10 +93,10 @@ augroup file_type_cpp
   autocmd Filetype c++ map <leader>m :term make -C ./build<cr>
 augroup END
 
-let g:neoformat_ocaml_ocamlformat = {
-      \ 'exe': 'ocamlformat',
-      \ }
- let g:neoformat_enabled_ocaml = ['ocamlformat']
+"let g:neoformat_ocaml_ocamlformat = {
+"      \ 'exe': 'ocamlformat',
+"      \ }
+"let g:neoformat_enabled_ocaml = ['ocamlformat']
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -110,16 +107,14 @@ endif
 let g:deoplete#omni#input_patterns.ocaml = '[^. *\t]\.\w*|\s\w*|#'
 call deoplete#custom#option('auto_complete_delay', 1000)
 
-augroup file_type_ocaml
-  autocmd Filetype ocaml nnoremap go :MerlinOccurrences<cr>
-  autocmd Filetype ocaml nnoremap gt :MerlinTypeOf<cr>
-  autocmd Filetype ocaml nnoremap g? :MerlinDocument<cr>
-  autocmd Filetype ocaml nnoremap gd :MerlinLocate<cr>
-  autocmd Filetype ocaml map <leader>m :make<cr>
-  autocmd Filetype ocaml nnoremap gj :lnext<cr>
-  autocmd Filetype ocaml nnoremap gk :lprevious<cr>
-  autocmd Filetype ocaml nnoremap g- :MerlinOutline<cr>
-augroup END
-
-"" ignore .mly and .mll
-let g:syntastic_ignore_files = ['\m\c\.ml[ly]$']
+"augroup file_type_ocaml
+"  autocmd Filetype ocaml nnoremap go :MerlinOccurrences<cr>
+"  autocmd Filetype ocaml nnoremap gt :MerlinTypeOf<cr>
+"  autocmd Filetype ocaml nnoremap g? :MerlinDocument<cr>
+"  autocmd Filetype ocaml nnoremap gd :MerlinLocate<cr>
+"  autocmd Filetype ocaml map <leader>m :make<cr>
+"  autocmd Filetype ocaml nnoremap gj :lnext<cr>
+"  autocmd Filetype ocaml nnoremap gk :lprevious<cr>
+"  autocmd Filetype ocaml nnoremap g- :MerlinOutline<cr>
+"  autocmd Filetype ocaml let g:syntastic_ignore_files = ['\m\c\.ml[ly]$']
+"augroup END
