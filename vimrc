@@ -123,8 +123,3 @@ augroup END
 
 "" ignore .mly and .mll
 let g:syntastic_ignore_files = ['\m\c\.ml[ly]$']
-
-tnoremap <C-w>h <C-\><C-n><C-w>h
-tnoremap <C-w>j <C-\><C-n><C-w>j
-tnoremap <C-w>k <C-\><C-n><C-w>k
-tnoremap <C-w>l <C-\><C-n><C-w>l
