@@ -99,13 +99,13 @@ augroup END
 "let g:neoformat_enabled_ocaml = ['ocamlformat']
 
 " deoplete
-let g:deoplete#enable_at_startup = 1
-"" blindly copied from `:h merlin.txt`
-if !exists('g:deoplete#omni_patterns')
-  let g:deoplete#omni#input_patterns = {}
-endif
-let g:deoplete#omni#input_patterns.ocaml = '[^. *\t]\.\w*|\s\w*|#'
-call deoplete#custom#option('auto_complete_delay', 1000)
+" let g:deoplete#enable_at_startup = 1
+" "" blindly copied from `:h merlin.txt`
+" if !exists('g:deoplete#omni_patterns')
+"   let g:deoplete#omni#input_patterns = {}
+" endif
+" let g:deoplete#omni#input_patterns.ocaml = '[^. *\t]\.\w*|\s\w*|#'
+" call deoplete#custom#option('auto_complete_delay', 1000)
 
 "augroup file_type_ocaml
 "  autocmd Filetype ocaml nnoremap go :MerlinOccurrences<cr>
