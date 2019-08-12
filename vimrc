@@ -22,7 +22,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kien/ctrlp.vim'
 Plug 'the-lambda-church/merlin'
-Plug 'vim-syntastic/syntastic'
 Plug 'sbdchd/neoformat'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'lervag/vimtex'
@@ -59,7 +58,41 @@ function! s:show_documentation()
   endif
 endfunction
 
-set hidden "buffers can be closed
+"buffers can be closed. Supposedly necessary for coc.nvim as well
+set hidden
+
+" coc.nvim: Some servers have issues with backup files
+set nobackup
+set nowritebackup
+
+
+" Use tab for trigger completion with characters ahead and navigate
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+
+" Use <c-space to trigger completion"
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 "let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 "execute "set rtp+=" . g:opamshare . "/merlin/vim"
