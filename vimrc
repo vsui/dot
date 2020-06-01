@@ -1,6 +1,10 @@
 syntax on
 set smartindent
 
+if has('nvim') && !has('nvim-0.4.3')
+  echom "This script may not work for nvim version < 0.4.3"
+endif
+
 set number
 set tabstop=2
 set shiftwidth=2
@@ -10,14 +14,35 @@ set expandtab
 " this so I've set it lower
 set updatetime=100
 
+" Stops vim from calling stdpath, which is only defined for nvim
+function StdpathCompat(in)
+  if has('nvim')
+    return stdpath(in)
+  else
+    echoerr '`stdpath_compat` should not be called in vim'
+    return ''
+  endif
+endfunction
+
+" Make this a function so vim can avoid calling this
+function VimPlugPathNvim()
+  if !has('nvim')
+    echoerr 'This function should only be called in nvim'
+  endif
+  return stdpath('data') . "/site/autoload/plug.vim"
+endfunction
+
 " install vim-plug if it is not already installed
-if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-	    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-autocmd	autocmd VimEnter * PlugInstall -sync | source $MYVIMRC
+let vimplug_path_vim = "~/.vim/autoload/plug.vim"
+let vimplug_path = has('nvim') ? VimPlugPathNvim() : "~/.vim/autoload/plug.vim"
+if empty(glob(vimplug_path))
+  execute 'silent !curl -fLo ' . vimplug_path . ' --create-dirs '
+      \ . 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+let plugin_directory = has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged'
+call plug#begin(plugin_directory)
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kien/ctrlp.vim'
@@ -110,10 +135,10 @@ nmap <silent> gr <Plug>(coc-references)
 "let g:syntastic_ocaml_checkers = ['merlin']
 
 " neoformat
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
+"augroup fmt
+"  autocmd!
+"  autocmd BufWritePre * undojoin | Neoformat
+"augroup END
 
 augroup file_type_cpp
   autocmd!
