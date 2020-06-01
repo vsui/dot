@@ -3,10 +3,13 @@
 # TODO install fish?
 # TODO CoC needs node installed...
 # TODO make script agnostic of folder it is run in 
+# TODO curl ... to github to README.md to run instruction
 # TODO make neovim the default editor
 # TODO link vim to nvim
 # TODO maybe load plugs as on-demand instead of all at once
 # TODO maybe provide Makefile with `install` and `clean` targets
+# TODO cmake would be useful
+# TODO macOS?
 
 set -e
 
@@ -37,6 +40,7 @@ wget -O nvim.appimage https://github.com/neovim/neovim/releases/download/v0.4.3/
 chmod u+x nvim.appimage && ./nvim.appimage --appimage-extract
 mkdir -p /usr/local/bin
 ln -s $(pwd)/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
+apt install -y nodejs # need this for CoC
 
 ln -s $(pwd)/vimrc ~/.vimrc
 ln -s $(pwd)/tmux.conf ~/.tmux.conf
