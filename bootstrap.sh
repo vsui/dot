@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# TODO install fish?
 # TODO CoC needs node installed...
 # TODO make script agnostic of folder it is run in 
 # TODO make neovim the default editor
