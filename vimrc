@@ -14,16 +14,6 @@ set expandtab
 " this so I've set it lower
 set updatetime=100
 
-" Stops vim from calling stdpath, which is only defined for nvim
-function StdpathCompat(in)
-  if has('nvim')
-    return stdpath(in)
-  else
-    echoerr '`stdpath_compat` should not be called in vim'
-    return ''
-  endif
-endfunction
-
 " Make this a function so vim can avoid calling this
 function VimPlugPathNvim()
   if !has('nvim')
