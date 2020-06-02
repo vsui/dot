@@ -1,7 +1,7 @@
 #!/bin/bash
 
+# TODO fix tmux conf
 # TODO install fish?
-# TODO CoC needs node installed...
 # TODO make script agnostic of folder it is run in 
 # TODO curl ... to github to README.md to run instruction
 # TODO make neovim the default editor
@@ -56,6 +56,8 @@ if test -e $NVIM_INSTALL_PATH && test -z $FORCE; then
   exit 1
 fi
 
+apt install ccls # needed for CoC C++ support
+
 sudo -u $SUDO_USER wget -O nvim.appimage https://github.com/neovim/neovim/releases/download/v0.4.3/nvim.appimage
 sudo -u $SUDO_USER chmod a+x nvim.appimage
 sudo -u $SUDO_USER ./nvim.appimage --appimage-extract
@@ -63,6 +65,7 @@ mkdir -p /usr/local/bin # organize this line to somewhere else, doesn't fit with
 sudo -u $SUDO_USER mkdir -p $XDG_CONFIG_HOME/nvim
 ln -s $FORCE $(pwd)/vimrc $XDG_CONFIG_HOME/nvim/init.vim
 ln -s $FORCE $(pwd)/squashfs-root/usr/bin/nvim $NVIM_INSTALL_PATH # TODO is it safe to hardcode `squashfs-root`
+ln -s $FORCE $(pwd)/coc-settings.json $XDG_CONFIG_HOME/nvim/coc-settings.json
 rm nvim.appimage
 
 ln -s $FORCE $(pwd)/vimrc ~/.vimrc
