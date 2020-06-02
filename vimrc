@@ -36,17 +36,17 @@ call plug#begin(plugin_directory)
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kien/ctrlp.vim'
-Plug 'the-lambda-church/merlin'
+Plug 'the-lambda-church/merlin' " TODO remove
 Plug 'sbdchd/neoformat'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex' " TODO remove
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround' " TODO remove?
 Plug 'vim-airline/vim-airline'
 Plug 'rhysd/vim-clang-format'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'roxma/vim-hug-neovim-rpc' " TODO remove?
 call plug#end()
 
 " Key mappings
@@ -76,10 +76,26 @@ endfunction
 "buffers can be closed. Supposedly necessary for coc.nvim as well
 set hidden
 
-" coc.nvim: Some servers have issues with backup files
+"==========================
+"= Begin coc.nvim configs =
+"==========================
+" Some servers have issues with backup files
 set nobackup
 set nowritebackup
 
+" Give more space for displaying messages
+set cmdheight=2
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Always show the signcolumn so text is not shifted whenever a diagnostic
+" appears
+if has("patch-8.1.1564")
+  set signcolumn=number " support vim
+else
+  set signcolumn=yes
+endif
 
 " Use tab for trigger completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
@@ -108,6 +124,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> <space>o :<C-u>CocList outline<cr>
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 
 "let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 "execute "set rtp+=" . g:opamshare . "/merlin/vim"
@@ -140,6 +159,9 @@ augroup file_type_cpp
   autocmd Filetype c++ nmap <silent> ]c <Plug>(coc-diagnostic-next)
   autocmd Filetype c++ map <leader>m :term make -C ./build<cr>
 augroup END
+"========================
+"= End coc.nvim configs =
+"========================
 
 "let g:neoformat_ocaml_ocamlformat = {
 "      \ 'exe': 'ocamlformat',
