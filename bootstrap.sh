@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO tmux use hjkl to switch panes
 # TODO install fish?
 # TODO make script agnostic of folder it is run in 
 # TODO curl ... to github to README.md to run instruction
