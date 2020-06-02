@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# TODO fix tmux conf
+# TODO tmux use hjkl to switch panes
 # TODO install fish?
 # TODO make script agnostic of folder it is run in 
 # TODO curl ... to github to README.md to run instruction
-# TODO make neovim the default editor
 # TODO link vim to nvim
 # TODO maybe load plugs as on-demand instead of all at once
 # TODO maybe provide Makefile with `install` and `clean` targets
@@ -65,6 +64,9 @@ ln -s $FORCE $(pwd)/vimrc $XDG_CONFIG_HOME/nvim/init.vim
 ln -s $FORCE $(pwd)/squashfs-root/usr/bin/nvim $NVIM_INSTALL_PATH # TODO is it safe to hardcode `squashfs-root`
 ln -s $FORCE $(pwd)/coc-settings.json $XDG_CONFIG_HOME/nvim/coc-settings.json
 rm nvim.appimage
+
+git config --global core.editor "nvim"
+export EDITOR=nvim # TODO need to actually add this to bash_profile or whatever
 
 sudo -u $SUDO_USER ln -s $FORCE $(pwd)/vimrc ~/.vimrc
 sudo -u $SUDO_USER ln -s $FORCE $(pwd)/tmux.conf ~/.tmux.conf
