@@ -36,7 +36,6 @@ call plug#begin(plugin_directory)
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'kien/ctrlp.vim'
-Plug 'the-lambda-church/merlin' " TODO remove
 Plug 'sbdchd/neoformat'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'lervag/vimtex' " TODO remove
@@ -128,21 +127,6 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> <space>o :<C-u>CocList outline<cr>
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 
-"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-"execute "set rtp+=" . g:opamshare . "/merlin/vim"
-
-" syntastic settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"
-"let g:syntastic_ocaml_checkers = ['merlin']
-
 " neoformat
 "augroup fmt
 "  autocmd!
@@ -163,28 +147,3 @@ augroup END
 "= End coc.nvim configs =
 "========================
 
-"let g:neoformat_ocaml_ocamlformat = {
-"      \ 'exe': 'ocamlformat',
-"      \ }
-"let g:neoformat_enabled_ocaml = ['ocamlformat']
-
-" deoplete
-" let g:deoplete#enable_at_startup = 1
-" "" blindly copied from `:h merlin.txt`
-" if !exists('g:deoplete#omni_patterns')
-"   let g:deoplete#omni#input_patterns = {}
-" endif
-" let g:deoplete#omni#input_patterns.ocaml = '[^. *\t]\.\w*|\s\w*|#'
-" call deoplete#custom#option('auto_complete_delay', 1000)
-
-"augroup file_type_ocaml
-"  autocmd Filetype ocaml nnoremap go :MerlinOccurrences<cr>
-"  autocmd Filetype ocaml nnoremap gt :MerlinTypeOf<cr>
-"  autocmd Filetype ocaml nnoremap g? :MerlinDocument<cr>
-"  autocmd Filetype ocaml nnoremap gd :MerlinLocate<cr>
-"  autocmd Filetype ocaml map <leader>m :make<cr>
-"  autocmd Filetype ocaml nnoremap gj :lnext<cr>
-"  autocmd Filetype ocaml nnoremap gk :lprevious<cr>
-"  autocmd Filetype ocaml nnoremap g- :MerlinOutline<cr>
-"  autocmd Filetype ocaml let g:syntastic_ignore_files = ['\m\c\.ml[ly]$']
-"augroup END
