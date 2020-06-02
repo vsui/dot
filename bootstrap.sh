@@ -33,11 +33,9 @@ then
     esac
   done  
 
-  # This script is designed to be run with sudo but I need to expand ~ as the original user. This was the
-  # first way I could figure out to do this. There is probably a better solution (maybe running separating
-  # superuser commands from non-superuser commands into two separate scripts)
-  export XDG_CONFIG_HOME=`sudo -u $SUDO_USER /bin/bash -c "echo ~/.config"`
-  echo $XDG_CONFIG_HOME
+  # Change home to the home directory of the original user
+  export HOME=`sudo -u $SUDO_USER /bin/bash -c "echo ~"`
+  export XDG_CONFIG_HOME=~/.config
 fi
 
 apt update
@@ -68,8 +66,8 @@ ln -s $FORCE $(pwd)/squashfs-root/usr/bin/nvim $NVIM_INSTALL_PATH # TODO is it s
 ln -s $FORCE $(pwd)/coc-settings.json $XDG_CONFIG_HOME/nvim/coc-settings.json
 rm nvim.appimage
 
-ln -s $FORCE $(pwd)/vimrc ~/.vimrc
-ln -s $FORCE $(pwd)/tmux.conf ~/.tmux.conf
-ln -s $FORCE $(pwd)/emacs.d ~/.emacs.d
+sudo -u $SUDO_USER ln -s $FORCE $(pwd)/vimrc ~/.vimrc
+sudo -u $SUDO_USER ln -s $FORCE $(pwd)/tmux.conf ~/.tmux.conf
+sudo -u $SUDO_USER ln -s $FORCE $(pwd)/emacs.d ~/.emacs.d
 
 
