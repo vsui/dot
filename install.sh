@@ -41,7 +41,9 @@ apt update
 apt install -y wget
 apt install -y curl
 apt install -y git
-apt install -y nodejs # need this for CoC
+# install nodejs for CoC
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 # install neovim
 # TODO currently neovim files extracted to squashfs-root, maybe change to install them in /usr
@@ -52,7 +54,9 @@ if test -e $NVIM_INSTALL_PATH && test -z $FORCE; then
   exit 1
 fi
 
-apt install ccls # needed for CoC C++ support
+# TODO package not available, need to get this some other way
+# TODO also it seems to cause issues if ccls looks for the standard headers depending on the version of clang it was built with
+# apt install ccls # needed for CoC C++ support
 
 sudo -u $SUDO_USER wget -O nvim.appimage https://github.com/neovim/neovim/releases/download/v0.4.3/nvim.appimage
 sudo -u $SUDO_USER chmod a+x nvim.appimage
