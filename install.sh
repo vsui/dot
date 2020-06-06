@@ -10,8 +10,13 @@
 # TODO macOS?
 # TODO maybe put everything that doesn't need sudo together
 
-set -e
-set -v
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  echo "Linux"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  echo "macOS"
+else
+  echo "Error: $OSTYPE not supported"
+fi
 
 # this is set to -f if -f is passed to the script
 FORCE=""
@@ -19,6 +24,25 @@ FORCE=""
 if [[ $* == *-f* ]]; then
   FORCE="-f"
 fi
+
+function package_install {
+  if [[ "OSTYPE" == "linux-gnu"* ]]; then
+    apt install -y $@
+  elif [[ "OSTYPE" == "darwin"* ]]; then
+    brew install -y $@
+  fi
+}
+
+function package_update {
+  if [[ "OSTYPE" == "linux-gnu"* ]]; then
+    apt update
+  elif [[ "OSTYPE" == "darwin"* ]]; then
+    brew update
+  fi
+}
+
+set -e
+set -v
 
 if [ -z $XDG_CONFIG_HOME ]
 then
@@ -36,14 +60,19 @@ then
   export XDG_CONFIG_HOME=~/.config
 fi
 
-apt update
+package_update
 # TODO maybe just make it so we just need one of wget and curl
-apt install -y wget
-apt install -y curl
-apt install -y git
+package_install -y wget
+package_install -y curl
+package_install -y git
 # install nodejs for CoC
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-sudo apt-get install -y nodejs
+# TODO these are different versions of node
+if [[ "OSTYPE" == "linux-gnu"* ]]; then
+  curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+  apt install -y nodejs
+elif [[ "OSTYPE" == "darwin"* ]]; then
+  package-install -y node
+fi
 
 # install neovim
 # TODO currently neovim files extracted to squashfs-root, maybe change to install them in /usr
@@ -53,10 +82,6 @@ if test -e $NVIM_INSTALL_PATH && test -z $FORCE; then
   echo "Error: file already exists at $NVIM_INSTALL_PATH"
   exit 1
 fi
-
-# TODO package not available, need to get this some other way
-# TODO also it seems to cause issues if ccls looks for the standard headers depending on the version of clang it was built with
-# apt install ccls # needed for CoC C++ support
 
 sudo -u $SUDO_USER wget -O nvim.appimage https://github.com/neovim/neovim/releases/download/v0.4.3/nvim.appimage
 sudo -u $SUDO_USER chmod a+x nvim.appimage
