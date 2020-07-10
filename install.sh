@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# This is only tested on Ubuntu 20.04
-# TODO i3 conf
 # TODO install fish?
 # TODO make script agnostic of folder it is run in 
 # TODO maybe provide Makefile with `install` and `clean` targets
@@ -37,6 +35,7 @@ export EDITOR=nvim
 ln -s $FORCE $(pwd)/vimrc ~/.vimrc
 ln -s $FORCE $(pwd)/tmux.conf ~/.tmux.conf
 ln -s $FORCE $(pwd)/emacs.d ~/.emacs.d
+ln -s $FORCE $(pwd)/i3-config $XDG_CONFIG_HOME/i3/config
 ln -s $FORCE $(pwd)/coc-settings.json $XDG_CONFIG_HOME/nvim/coc-settings.json
 ln -s $FORCE $(pwd)/vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
