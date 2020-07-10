@@ -1,0 +1,18 @@
+Instructions
+------------
+From project root, run
+
+```
+sudo ./install-deps.sh
+```
+
+to install dependencies. Then run
+
+```
+./install.sh
+```
+
+to symlink the config files. You can optionally provide the `-f` flag to overwrite any conflicting files.
+
+I have only tested this on Ubuntu 20.04.
+
