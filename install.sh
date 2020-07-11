@@ -14,8 +14,7 @@ fi
 set -e
 set -v
 
-if [ -z $XDG_CONFIG_HOME ]
-then
+if [ -z $XDG_CONFIG_HOME ]; then
   # read -p '$XDG_CONFIG_HOME is not set. Would you like to continue by proceeding with the default XDG_CONFIG_HOME=~/.config? ' yn
   echo '$XDG_CONFIG_HOME is not set. Would you like to proceed with the default XDG_CONFIG_HOME=~/.config?'
   select yn in "Yes" "No"; do
@@ -32,10 +31,17 @@ git config --global core.editor "nvim"
 # TODO update-alternatives?
 export EDITOR=nvim
 
-ln -s $FORCE $(pwd)/vimrc ~/.vimrc
 ln -s $FORCE $(pwd)/tmux.conf ~/.tmux.conf
-ln -s $FORCE $(pwd)/emacs.d ~/.emacs.d
+# The -n flag will only actually overwrite it if ~/.emacs.d is a symlink to a directory. So if it is
+# just a normal directory the following line will just place the symlink in ~/.emacs.d, which is not what we
+# want.
+if [ -d ~/.emacs.d ] && [ -n "$FORCE" ]; then
+  rm -r ~/.emacs.d 
+fi
+ln -sn $FORCE $(pwd)/emacs.d ~/.emacs.d
+
 ln -s $FORCE $(pwd)/i3-config $XDG_CONFIG_HOME/i3/config
+mkdir -p $XDG_CONFIG_HOME/nvim
 ln -s $FORCE $(pwd)/coc-settings.json $XDG_CONFIG_HOME/nvim/coc-settings.json
 ln -s $FORCE $(pwd)/vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
