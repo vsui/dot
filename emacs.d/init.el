@@ -9,11 +9,6 @@
 
 (package-initialize)
 
-;; Appearance
-(tool-bar-mode -1) ; no tool bar
-(scroll-bar-mode -1) ; no scroll bar
-(global-linum-mode 0)
-
 ;; Basic functionality
 (require 'evil)
 (require 'multi-term)
