@@ -14,7 +14,6 @@
 (require 'multi-term)
 (require 'key-chord)
 
-(evil-mode 1)
 (key-chord-mode 1)
 (company-mode 1)
 
