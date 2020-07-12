@@ -9,6 +9,18 @@
 
 (package-initialize)
 
+;; TODO do not hard code directory
+(use-package org-roam
+  :custom
+  (org-roam-directory "~/Sync/org/roam")
+  :bind (:map org-roam-mode-map
+	      (("C-c n l" . org-roam)
+	       ("C-C n f" . org-roam-find-file)
+	       ("C-c n g" . org-roam-graph-show))
+	 :map org-mode-map
+	      (("C-c n i" . org-roam-insert))
+	      (("C-c n I" . org-roam-insert-immediate))))
+
 ;; Basic functionality
 (require 'evil)
 (require 'multi-term)
