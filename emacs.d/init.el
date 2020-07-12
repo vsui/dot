@@ -19,7 +19,7 @@
 (company-mode 1)
 
 (add-hook 'text-mode-hook 'auto-fill-mode)
-(setq-default fill-column 80)
+(setq-default fill-column 110)
 
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (setq multi-term-program "/bin/bash")
