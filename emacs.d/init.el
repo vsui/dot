@@ -3,7 +3,7 @@
 ;; TODO
 ;; I don't know having this here will put multiple .emacs.d in my load path
 ;; Also maybe I should make it not hard coded to this path
-(setq load-path (cons "~/.emacs.d" load-path))
+(setq load-path (cons "~/.emacs.d/lisp" load-path))
 
 (load "ssl-warning")
 
