@@ -14,6 +14,11 @@ fi
 set -e
 set -v
 
+# TODO
+# Prompt for and set the following:
+# git config --global user.email "you@example.com"
+# git config --global user.name "Your Name"
+
 if [ -z $XDG_CONFIG_HOME ]; then
   # read -p '$XDG_CONFIG_HOME is not set. Would you like to continue by proceeding with the default XDG_CONFIG_HOME=~/.config? ' yn
   echo '$XDG_CONFIG_HOME is not set. Would you like to proceed with the default XDG_CONFIG_HOME=~/.config?'
@@ -45,3 +50,6 @@ mkdir -p $XDG_CONFIG_HOME/nvim
 ln -s $FORCE $(pwd)/coc-settings.json $XDG_CONFIG_HOME/nvim/coc-settings.json
 ln -s $FORCE $(pwd)/vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
+echo "Complete setup by"
+echo "1) Enabling i3"
+echo "2) Logging into firefox"
