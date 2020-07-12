@@ -5,7 +5,7 @@
 ;; Also maybe I should make it not hard coded to this path
 (setq load-path (cons "~/.emacs.d" load-path))
 
-(load "./ssl-warning")
+(load "ssl-warning")
 
 (package-initialize)
 
