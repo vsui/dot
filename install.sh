@@ -44,7 +44,7 @@ if [ -d ~/.emacs.d ] && [ -n "$FORCE" ]; then
   rm -r ~/.emacs.d 
 fi
 ln -sn $FORCE $(pwd)/emacs.d ~/.emacs.d
-
+mkdir -p $XDG_CONFIG_HOME/i3
 ln -s $FORCE $(pwd)/i3-config $XDG_CONFIG_HOME/i3/config
 mkdir -p $XDG_CONFIG_HOME/nvim
 ln -s $FORCE $(pwd)/coc-settings.json $XDG_CONFIG_HOME/nvim/coc-settings.json
