@@ -14,7 +14,7 @@
 (use-package org-roam
   :custom
   (org-roam-directory "~/Sync/org/roam")
-  (org-roam-buffer-position 'bottom)
+  (org-roam-buffer-position 'top)
   :bind (:map org-roam-mode-map
 	      (("C-c n l" . org-roam)
 	       ("C-C n f" . org-roam-find-file)
