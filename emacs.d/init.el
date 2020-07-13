@@ -25,6 +25,16 @@
 	(("C-c n I" . org-roam-insert-immediate))))
 (add-hook 'after-init-hook 'org-roam-mode)
 
+;; Set up org-journal to work with org-roam
+(use-package org-journal
+  :bind
+  ("C-c n j" . org-journal-new-entry)
+  :custom
+  (org-journal-date-prefix "#+title: ")
+  (org-journal-file-format "%Y-%m-%d.org")
+  (org-journal-dir "~/Sync/org/roam")
+  (org-journal-date-format "%A, %d %B %Y"))
+
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (setq-default fill-column 110)
 
@@ -132,3 +142,15 @@
 ;; (helm-projectile-on)
 ;; 
 ;; (setq projectile-git-submodule-command nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (org-journal use-package org-roam evil))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
