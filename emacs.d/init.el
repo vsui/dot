@@ -15,13 +15,14 @@
   :custom
   (org-roam-directory "~/Sync/org/roam")
   (org-roam-buffer-position 'top)
-  :bind (:map org-roam-mode-map
-	      (("C-c n l" . org-roam)
-	       ("C-C n f" . org-roam-find-file)
-	       ("C-c n g" . org-roam-graph))
-	 :map org-mode-map
-	      (("C-c n i" . org-roam-insert))
-	      (("C-c n I" . org-roam-insert-immediate))))
+  :bind
+  (:map org-roam-mode-map
+	(("C-c n l" . org-roam)
+	 ("C-C n f" . org-roam-find-file)
+	 ("C-c n g" . org-roam-graph))
+   :map org-mode-map
+	(("C-c n i" . org-roam-insert))
+	(("C-c n I" . org-roam-insert-immediate))))
 (add-hook 'after-init-hook 'org-roam-mode)
 
 (add-hook 'text-mode-hook 'auto-fill-mode)
