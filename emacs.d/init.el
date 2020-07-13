@@ -10,9 +10,11 @@
 (package-initialize)
 
 ;; TODO do not hard code directory
+;; TODO may need to make directory first?
 (use-package org-roam
   :custom
   (org-roam-directory "~/Sync/org/roam")
+  (org-roam-buffer-position 'bottom)
   :bind (:map org-roam-mode-map
 	      (("C-c n l" . org-roam)
 	       ("C-C n f" . org-roam-find-file)
@@ -20,6 +22,7 @@
 	 :map org-mode-map
 	      (("C-c n i" . org-roam-insert))
 	      (("C-c n I" . org-roam-insert-immediate))))
+(add-hook 'after-init-hook 'org-roam-mode)
 
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (setq-default fill-column 110)
