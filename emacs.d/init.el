@@ -9,6 +9,9 @@
 
 (package-initialize)
 
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+
 ;; TODO do not hard code directory
 ;; TODO may need to make directory first?
 (use-package org-roam
@@ -147,6 +150,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/Sync/org/inbox.org")))
+ '(org-capture-templates
+   (quote
+    (("" "" entry
+      (file "~/Sync/org/inbox.org")
+      "")
+     ("i" "Inbox" entry
+      (file "~/Sync/org/inbox.org")
+      ""))))
  '(package-selected-packages (quote (magit org-journal use-package org-roam evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
