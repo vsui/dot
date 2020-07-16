@@ -5,6 +5,8 @@
 ;; Also maybe I should make it not hard coded to this path
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 
+(which-key-mode)
+
 (load "ssl-warning")
 
 (package-initialize)
@@ -140,7 +142,9 @@
      ("i" "Inbox" entry
       (file "~/Sync/org/inbox.org")
       ""))))
- '(package-selected-packages (quote (magit org-journal use-package org-roam evil))))
+ '(package-selected-packages
+   (quote
+    (which-key magit org-journal use-package org-roam evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
