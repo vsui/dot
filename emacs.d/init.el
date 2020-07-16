@@ -11,7 +11,9 @@
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c i") (lambda () (interactive) (find-file user-init-file)))
 
+;; TODO use org-directory custom var
 ;; TODO do not hard code directory
 ;; TODO may need to make directory first?
 (use-package org-roam
