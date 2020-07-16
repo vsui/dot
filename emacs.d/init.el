@@ -43,29 +43,8 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (setq-default fill-column 110)
 
-(global-set-key (kbd "C-c i") (lambda () (interactive) (find-file user-init-file)))
-
 ;; (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-;; 
-;; 
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(custom-safe-themes
-;;    (quote
-;;     ("392395ee6e6844aec5a76ca4f5c820b97119ddc5290f4e0f58b38c9748181e8d" default)))
-;;  '(package-selected-packages
-;;    (quote
-;;     (cmake-mode helm-rg helm-projectile ripgrep projectile magit dap-mode ace-window lsp-ui company-lsp cquery key-chord multi-term flatui-theme merlin tuareg lsp-mode spacemacs-theme racer flymake-rust flycheck-rust evil dracula-theme company cargo atom-one-dark-theme atom-dark-theme))))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
-;; 
+
 ;; ;; OCaml modes
 ;; (autoload 'merlin-mode "merlin" "Merlin mode" t)
 ;; (add-hook 'tuareg-mode-hook 'merlin-mode)
