@@ -5,15 +5,35 @@
 ;; Also maybe I should make it not hard coded to this path
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 
-(which-key-mode)
 
 (load "ssl-warning")
 
 (package-initialize)
 
+; (require 'which-key)
+(which-key-mode)
+
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c i") (lambda () (interactive) (find-file user-init-file)))
+(setq lsp-keymap-prefix "C-l")
+
+(use-package lsp-mode
+  :hook
+  ((c++-mode . lsp)
+   (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+(use-package lsp-ui :commands lsp-ui-mode)
+;; TODO company-lsp
+
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+  
+(use-package ccls
+  :hook
+  ((c++-mode) . (lambda ()
+		  (require 'ccls)
+		  (lsp))))
 
 ;; TODO use org-directory custom var
 ;; TODO do not hard code directory
@@ -144,7 +164,7 @@
       ""))))
  '(package-selected-packages
    (quote
-    (which-key magit org-journal use-package org-roam evil))))
+    (lsp-treemacs ccls lsp-ui flycheck lsp-mode which-key magit org-journal use-package org-roam evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
