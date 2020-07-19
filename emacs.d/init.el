@@ -65,7 +65,7 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (setq-default fill-column 110)
 
-;; (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 
 ;; ;; OCaml modes
 ;; (autoload 'merlin-mode "merlin" "Merlin mode" t)
@@ -164,7 +164,7 @@
       ""))))
  '(package-selected-packages
    (quote
-    (lsp-treemacs ccls lsp-ui flycheck lsp-mode which-key magit org-journal use-package org-roam evil))))
+    (key-chord lsp-treemacs ccls lsp-ui flycheck lsp-mode which-key magit org-journal use-package org-roam evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
