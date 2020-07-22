@@ -1,4 +1,11 @@
 {
+"coc.preferences.formatOnSaveFileTypes": ["python"],
+"python": {
+  "jediEnabled": false,
+  "linting": {
+    "mypyEnabled": true
+  }
+},
 "languageserver": {
   "ccls": {
     "command": "ccls",
