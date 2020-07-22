@@ -48,8 +48,15 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'roxma/vim-hug-neovim-rpc' " TODO remove?
 call plug#end()
 
+" Navigate to plugin_directory
+command! PluginDirectory execute "e " . plugin_directory
+command! InitFile execute "e " . $MYVIMRC
+
 " Key mappings
 let g:mapleader = ','
+nnoremap <leader>ev :tabedit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>s :source %
 inoremap jk <esc>
 "" Other plugin key mappings
 let g:ctrlp_map = '<c-p>'
@@ -132,6 +139,8 @@ nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 "  autocmd!
 "  autocmd BufWritePre * undojoin | Neoformat
 "augroup END
+
+command! -nargs=0 Format :call CocAction('format')
 
 augroup file_type_cpp
   autocmd!
