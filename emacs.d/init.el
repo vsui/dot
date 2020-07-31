@@ -5,11 +5,11 @@
 ;; Also maybe I should make it not hard coded to this path
 (setq load-path (cons "~/.emacs.d/lisp" load-path))
 
-(which-key-mode)
-
 (load "ssl-warning")
 
 (package-initialize)
+
+(which-key-mode)
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
@@ -45,7 +45,7 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (setq-default fill-column 110)
 
-;; (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+; (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 
 ;; ;; OCaml modes
 ;; (autoload 'merlin-mode "merlin" "Merlin mode" t)
@@ -133,6 +133,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(mac-command-modifier (quote meta))
+ '(mac-mouse-wheel-mode t)
  '(org-agenda-files (quote ("~/Sync/org/inbox.org")))
  '(org-capture-templates
    (quote
@@ -151,3 +153,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(setq org-todo-keywords '((sequence "TODO" "|" "BLOCKED" "DONE")))
+(setq org-log-done 'time)
