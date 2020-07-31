@@ -48,12 +48,20 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'roxma/vim-hug-neovim-rpc' " TODO remove?
 call plug#end()
 
+" Navigate to plugin_directory
+command! PluginDirectory execute "e " . plugin_directory
+command! InitFile execute "e " . $MYVIMRC
+
 " Key mappings
 let g:mapleader = ','
+nnoremap <leader>ev :vertical rightbelow new $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>s :source %
 inoremap jk <esc>
 "" Other plugin key mappings
-let g:ctrlp_map = '<c-p>'
-map <c-n> :NERDTreeToggle<cr>
+let g:ctrlp_map = '<C-p>'
+noremap <C-b> :CtrlPBuffer<cr>
+noremap <C-n> :NERDTreeToggle<cr>
 "" Git key mappings
 nnoremap <leader>gx :GitGutterUndoHunk<cr>
 nnoremap <leader>g[ :GitGutterPrevHunk<cr>
@@ -63,6 +71,7 @@ nnoremap <leader>g] :GitGutterNextHunk<cr>
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+noremap <leader><space> :CocCommand<cr>
 
 function! s:show_documentation()
   if &filetype == 'vim'
@@ -71,6 +80,18 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+tnoremap <Esc> <C-\><C-n>
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+augroup termstuff
+  autocmd!
+  autocmd TermEnter * echo "Entering terminal"
+  autocmd TermOpen * echo "Opening terminal"
+  autocmd TermOpen * startinsert
+augroup END
 
 "buffers can be closed. Supposedly necessary for coc.nvim as well
 set hidden
@@ -132,6 +153,13 @@ nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 "  autocmd!
 "  autocmd BufWritePre * undojoin | Neoformat
 "augroup END
+"
+function! s:PoetryTest()
+  execute "!poetry run pytest tests"
+endfunction
+
+command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 PoetryTest :call <SID>PoetryTest()
 
 augroup file_type_cpp
   autocmd!
