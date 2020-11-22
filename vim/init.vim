@@ -22,6 +22,7 @@ function VimPlugPathNvim()
   return stdpath('data') . "/site/autoload/plug.vim"
 endfunction
 
+" TODO should prob only do this if prompted...
 " install vim-plug if it is not already installed
 let vimplug_path_vim = "~/.vim/autoload/plug.vim"
 let vimplug_path = has('nvim') ? VimPlugPathNvim() : "~/.vim/autoload/plug.vim"
@@ -40,7 +41,11 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+
+if executable('node')
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+endif
+
 call plug#end()
 
 " TODO what is this for
@@ -55,85 +60,87 @@ nnoremap <leader>gx :GitGutterUndoHunk<cr>
 nnoremap <leader>g[ :GitGutterPrevHunk<cr>
 nnoremap <leader>g] :GitGutterNextHunk<cr>
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-noremap <leader><space> :CocCommand<cr>
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 "buffers can be closed. Supposedly necessary for coc.nvim as well
 set hidden
 
 "==========================
 "= Begin coc.nvim configs =
 "==========================
-" Some servers have issues with backup files
-set nobackup
-set nowritebackup
+" TODO this should be if coc loaded
+if executable('node')
+  " Some servers have issues with backup files
+  set nobackup
+  set nowritebackup
 
-" Give more space for displaying messages
-set cmdheight=2
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+  noremap <leader><space> :CocCommand<cr>
 
-" Highlight the symbol and its references when holding the cursor
-autocmd CursorHold * silent call CocActionAsync('highlight')
+  function! s:show_documentation()
+    if &filetype == 'vim'
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
+    " Always show the signcolumn so text is not shifted whenever a diagnostic
+    " appears
+    if has("patch-8.1.1564")
+      set signcolumn=number " support vim
+    else
+      set signcolumn=yes
+    endif
 
-" Always show the signcolumn so text is not shifted whenever a diagnostic
-" appears
-if has("patch-8.1.1564")
-  set signcolumn=number " support vim
-else
-  set signcolumn=yes
-endif
+  " Give more space for displaying messages
+  set cmdheight=2
 
-" Use tab for trigger completion with characters ahead and navigate
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p" : "\<C-h>"
+  " Highlight the symbol and its references when holding the cursor
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1] =~# '\s'
-endfunction
+  " Use tab for trigger completion with characters ahead and navigate
+  inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p" : "\<C-h>"
 
-" Use <c-space to trigger completion"
-inoremap <silent><expr> <c-space> coc#refresh()
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~# '\s'
+  endfunction
 
-" Use <cr> to confirm completion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "<C-g>u\<CR>"
+  " Use <c-space to trigger completion"
+  inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+  " Use <cr> to confirm completion
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "<C-g>u\<CR>"
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+  " Use `[c` and `]c` to navigate diagnostics
+  nmap <silent> [c <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-nnoremap <silent> <space>o :<C-u>CocList outline<cr>
-nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+  " Remap keys for gotos
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
 
-command! -nargs=0 Format :call CocAction('format')
-command! -nargs=0 PoetryTest :call <SID>PoetryTest()
+  nnoremap <silent> <space>o :<C-u>CocList outline<cr>
+  nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 
-augroup file_type_cpp
-  autocmd!
-  autocmd Filetype c++ nmap <silent> gd <Plug>(coc-definition)
-  autocmd Filetype c++ nmap <silent> gt <Plug>(coc-type-definition)
-  autocmd Filetype c++ nmap <silent> gi <Plug>(coc-implementation)
-  autocmd Filetype c++ nmap <silent> gr <Plug>(coc-references)
-  autocmd Filetype c++ nmap <silent> [c <Plug>(coc-diagnostic-prev)
-  autocmd Filetype c++ nmap <silent> ]c <Plug>(coc-diagnostic-next)
-  autocmd Filetype c++ map <leader>m :term make -C ./build<cr>
-augroup END
+  command! -nargs=0 Format :call CocAction('format')
+  command! -nargs=0 PoetryTest :call <SID>PoetryTest()
+
+  augroup file_type_cpp
+    autocmd!
+    autocmd Filetype c++ nmap <silent> gd <Plug>(coc-definition)
+    autocmd Filetype c++ nmap <silent> gt <Plug>(coc-type-definition)
+    autocmd Filetype c++ nmap <silent> gi <Plug>(coc-implementation)
+    autocmd Filetype c++ nmap <silent> gr <Plug>(coc-references)
+    autocmd Filetype c++ nmap <silent> [c <Plug>(coc-diagnostic-prev)
+    autocmd Filetype c++ nmap <silent> ]c <Plug>(coc-diagnostic-next)
+    autocmd Filetype c++ map <leader>m :term make -C ./build<cr>
+  augroup END
+endif 
 "========================
 "= End coc.nvim configs =
 "========================
