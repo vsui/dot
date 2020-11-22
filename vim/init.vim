@@ -6,8 +6,8 @@ if has('nvim') && !has('nvim-0.4.3')
 endif
 
 set number
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 " this controls how long it takes for the current buffer to be flushed to disk
 " the default is 4000 (4 seconds) but the git-gutter updates are dictated by
