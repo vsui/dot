@@ -1,0 +1,7 @@
+#!/bin/bash
+
+CWD=`dirname $0`
+TMUX_CONF=$CWD/tmux.conf
+TMUX_CONF_PATH=~/.tmux.conf
+
+ln --relative -s $TMUX_CONF $TMUX_CONF_PATH

@@ -34,41 +34,26 @@ endif
 let plugin_directory = has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged'
 call plug#begin(plugin_directory)
 Plug 'airblade/vim-gitgutter'
-Plug 'easymotion/vim-easymotion'
-Plug 'kien/ctrlp.vim'
-Plug 'sbdchd/neoformat'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'lervag/vimtex' " TODO remove
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround' " TODO remove?
+Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'lambdalisue/fern.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'rhysd/vim-clang-format'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'roxma/vim-hug-neovim-rpc' " TODO remove?
 call plug#end()
 
+" TODO what is this for
 " Navigate to plugin_directory
 command! PluginDirectory execute "e " . plugin_directory
 command! InitFile execute "e " . $MYVIMRC
 
-" Key mappings
-let g:mapleader = ','
-nnoremap <leader>ev :vertical rightbelow new $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>s :source %
+let g:mapleader = ' '
 inoremap jk <esc>
-"" Other plugin key mappings
-let g:ctrlp_map = '<C-p>'
-noremap <C-b> :CtrlPBuffer<cr>
-noremap <C-n> :NERDTreeToggle<cr>
-"" Git key mappings
+
 nnoremap <leader>gx :GitGutterUndoHunk<cr>
 nnoremap <leader>g[ :GitGutterPrevHunk<cr>
 nnoremap <leader>g] :GitGutterNextHunk<cr>
-
-" Ignore .gitignore for CtrlP
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 noremap <leader><space> :CocCommand<cr>
@@ -80,18 +65,6 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
-tnoremap <Esc> <C-\><C-n>
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-augroup termstuff
-  autocmd!
-  autocmd TermEnter * echo "Entering terminal"
-  autocmd TermOpen * echo "Opening terminal"
-  autocmd TermOpen * startinsert
-augroup END
 
 "buffers can be closed. Supposedly necessary for coc.nvim as well
 set hidden
@@ -147,16 +120,6 @@ nmap <silent> gr <Plug>(coc-references)
 
 nnoremap <silent> <space>o :<C-u>CocList outline<cr>
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
-
-" neoformat
-"augroup fmt
-"  autocmd!
-"  autocmd BufWritePre * undojoin | Neoformat
-"augroup END
-"
-function! s:PoetryTest()
-  execute "!poetry run pytest tests"
-endfunction
 
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 PoetryTest :call <SID>PoetryTest()

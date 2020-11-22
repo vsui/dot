@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -z $XDG_CONFIG_HOME ]; then
+    XDG_CONFIG_HOME=~/.config
+fi
+
+CWD=`dirname $0`
+VIMRC=$CWD/init.vim
+
+VIMRC_PATH=~/.vimrc
+NEOVIMRC_PATH=$XDG_CONFIG_HOME/nvim/init.vim
+
+ln --relative -s $VIMRC $VIMRC_PATH
+ln --relative -s $VIMRC $NEOVIMRC_PATH
+
+
+
